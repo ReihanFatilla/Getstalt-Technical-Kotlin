@@ -1,12 +1,21 @@
 import kotlin.test.assertEquals
 
-fun generateHalfPyramid(): String{
-
+fun generateHalfPyramid(): String {
+    return StringBuilder().also { stringBuilder ->
+        repeat(10) {
+            val index = it + 1
+            stringBuilder.append(
+                if (index < 6) {
+                    "${("0".repeat(index))}${index}\n"
+                } else {
+                    "${(index).toString().replace("0","")}${("0".repeat(index))}\n"
+                }
+            )
+        }
+    }.toString().trimEnd()
 }
 
-fun main(){
-    val array = arrayListOf("Volvo","BMW","Toyota","Kijang")
-
+fun main() {
     val expectedOutput = """
         01
         002
@@ -23,5 +32,5 @@ fun main(){
     val actualOutput = generateHalfPyramid()
 
     print(actualOutput)
-    assertEquals(expectedOutput, actualOutput, message = "Task Passed!")
+    assertEquals(expectedOutput, actualOutput, message = "Task Failed!")
 }
