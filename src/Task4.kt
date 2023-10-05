@@ -1,7 +1,19 @@
 import kotlin.test.assertEquals
 
 fun generateDataInfo(data: Map<String, Map<String, String>>): String {
-    data
+    return StringBuilder().also { stringBuilder ->
+        data.onEachIndexed { index, orang ->
+            stringBuilder.append("Orang ${index+1}\nNama: ${orang.key}\n")
+            orang.value.forEach { value ->
+                stringBuilder.append("${value.key}: ${value.value}\n")
+
+            }
+            if(!orang.value.keys.contains("hp")) {
+                stringBuilder.append("hp: Tidak Memiliki No Handphone\n")
+            }
+            stringBuilder.append("\n")
+        }
+    }.toString().trimEnd()
 }
 
 fun main(){
@@ -11,7 +23,7 @@ fun main(){
             "email" to "bimonasuti@gmail.com",
             "hp" to "08123456787"
         ),
-        "Bimo Nasuti" to mapOf(
+        "Bimo Nasutia" to mapOf(
             "mob" to "1231354897",
             "email" to "bombomi@gmail.com"
         ),
@@ -30,16 +42,21 @@ fun main(){
         hp: 08123456787
         
         Orang 2
-        Nama: Bimo Nasuti
+        Nama: Bimo Nasutia
         mob: 1231354897
         email: bombomi@gmail.com
+        hp: Tidak Memiliki No Handphone
         
         Orang 3
+        Nama: Yuni Salam
         mob: 512512662
         email: yunisalam@gmail.com
         hp: 08123456787
     """.trimIndent()
 
+
     val actualOutput = generateDataInfo(dataDiri)
+
+    print("result: $actualOutput")
     assertEquals(expectedOutput, actualOutput)
 }
