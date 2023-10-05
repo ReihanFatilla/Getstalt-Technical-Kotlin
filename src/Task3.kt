@@ -24,5 +24,5 @@ fun main(){
     val actualOutput = getDateDifference(timeBefore, timeAfter)
 
     print("Result: $actualOutput")
-    assertEquals(expectedOutput, actualOutput, message = "Task Failed!")
+    assertEquals(expectedOutput, actualOutput)
 }

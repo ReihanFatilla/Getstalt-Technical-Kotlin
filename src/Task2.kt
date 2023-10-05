@@ -33,5 +33,5 @@ fun main() {
     val actualOutput = generateHalfPyramid()
 
     print(actualOutput)
-    assertEquals(expectedOutput, actualOutput, message = "Task Failed!")
+    assertEquals(expectedOutput, actualOutput)
 }
