@@ -13,7 +13,7 @@ fun generateHalfPyramid(): String {
                 }
             )
         }
-    }.toString().trimEnd()
+    }.toString().trim()
 }
 
 fun main() {

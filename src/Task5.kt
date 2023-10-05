@@ -3,18 +3,24 @@ import java.util.*
 import kotlin.test.assertEquals
 
 fun generatePecahan(uang: String): String {
-    return StringBuilder().also {
-
-    }.toString()
+    return StringBuilder().also { stringBuilder ->
+        var sisaUang = uang.dropLast(4).fromRupiah()
+        listOf(100, 50, 20, 10, 5, 1).forEach { nominal ->
+            stringBuilder.append(
+                "${nominal}000".toRupiah() + " = " + sisaUang / nominal + "\n"
+            )
+            sisaUang %= nominal
+        }
+    }.toString().trim()
 }
 
-fun Int.toRupiah(): String{
+fun String.toRupiah(): String{
     val localeID =  Locale("in", "ID")
 
     val numberFormat = NumberFormat.getCurrencyInstance(localeID)
     numberFormat.maximumFractionDigits = 0
 
-    return numberFormat.format(this).toString()
+    return numberFormat.format(this.toDouble()).toString()
 }
 
 fun String.fromRupiah(): Int {
@@ -37,6 +43,6 @@ fun main(){
 
     val actualOutput = generatePecahan(uang)
 
-    print("result: ${(1000).toRupiah()}")
-//    assertEquals(expectedOutput, actualOutput)
+    print(actualOutput)
+    assertEquals(expectedOutput, actualOutput)
 }

@@ -13,7 +13,7 @@ fun generateDataInfo(data: Map<String, Map<String, String>>): String {
             }
             stringBuilder.append("\n")
         }
-    }.toString().trimEnd()
+    }.toString().trim()
 }
 
 fun main(){
