@@ -34,7 +34,7 @@ fun main(){
     val actualOutput = generateLoopPattern(array).map { it.toList() }.toList()
 
     print("result: ${actualOutput}")
-    assertEquals(expectedOutput, actualOutput, message = "Task Passed!")
+    assertEquals(expectedOutput, actualOutput, message = "Task Failed!")
 }
 
 

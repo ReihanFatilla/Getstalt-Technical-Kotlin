@@ -1,5 +1,6 @@
 import kotlin.test.assertEquals
 
+
 fun generateHalfPyramid(): String {
     return StringBuilder().also { stringBuilder ->
         repeat(10) {
