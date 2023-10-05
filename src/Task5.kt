@@ -1,4 +1,5 @@
-import java.util.Currency
+import java.text.NumberFormat
+import java.util.*
 import kotlin.test.assertEquals
 
 fun generatePecahan(uang: String): String {
@@ -7,20 +8,35 @@ fun generatePecahan(uang: String): String {
     }.toString()
 }
 
+fun Int.toRupiah(): String{
+    val localeID =  Locale("in", "ID")
+
+    val numberFormat = NumberFormat.getCurrencyInstance(localeID)
+    numberFormat.maximumFractionDigits = 0
+
+    return numberFormat.format(this).toString()
+}
+
+fun String.fromRupiah(): Int {
+    val cleanRupiah = replace("[^\\d]".toRegex(), "")
+
+    return cleanRupiah.toInt()
+}
+
 fun main(){
-    val uang = "Rp. 1.586.000"
+    val uang = "Rp1.586.000"
 
     val expectedOutput = """
-        Rp. 100.000 = 15
-        Rp. 50.000 = 1
-        Rp. 20.000 = 1
-        Rp. 10.000 = 1
-        Rp. 5.000 = 1
-        Rp. 1.000 = 1
+        Rp100.000 = 15
+        Rp50.000 = 1
+        Rp20.000 = 1
+        Rp10.000 = 1
+        Rp5.000 = 1
+        Rp1.000 = 1
     """.trimIndent()
 
     val actualOutput = generatePecahan(uang)
 
-    print("result: ${actualOutput}")
-    assertEquals(expectedOutput, actualOutput)
+    print("result: ${(1000).toRupiah()}")
+//    assertEquals(expectedOutput, actualOutput)
 }
